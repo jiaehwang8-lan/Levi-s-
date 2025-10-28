@@ -9,24 +9,19 @@
     @import url('https://fonts.googleapis.com/css2?family=Oswald:wght@500;700&display=swap');
 
     /* ===============================
-       기본 설정
+       🔹 배경 전용 레이어
     =============================== */
-    body {
-      text-align: center;
-      font-family: 'Noto Sans KR', 'Oswald', sans-serif;
-      background-image: url('background.jpg');
-      background-size: cover;
-      background-repeat: no-repeat;
-      background-position: center;
-      background-attachment: fixed;
-      position: relative;
-      color: #fff;
-      min-height: 100vh;
-      margin: 0;
+    .background {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: url('background.jpg') center/cover no-repeat;
+      z-index: -2;
     }
 
-    body::before {
-      content: "";
+    .overlay {
       position: fixed;
       top: 0;
       left: 0;
@@ -34,6 +29,17 @@
       height: 100%;
       background-color: rgba(0, 0, 0, 0.5);
       z-index: -1;
+    }
+
+    /* ===============================
+       기본 설정
+    =============================== */
+    body {
+      text-align: center;
+      font-family: 'Noto Sans KR', 'Oswald', sans-serif;
+      color: #fff;
+      margin: 0;
+      min-height: 100vh;
     }
 
     /* ===============================
@@ -52,7 +58,7 @@
     }
 
     /* ===============================
-       H1
+       제목
     =============================== */
     h1 {
       color: #C41230;
@@ -62,7 +68,6 @@
       letter-spacing: 3px;
       margin-top: 40px;
       margin-bottom: 50px;
-      transition: transform 0.3s ease, text-shadow 0.3s ease;
       padding: 0 15px;
     }
 
@@ -71,11 +76,9 @@
       text-decoration: underline;
       text-underline-offset: 6px;
       text-decoration-thickness: 2px;
-      cursor: pointer;
     }
 
     h1 a:hover {
-      color: inherit;
       text-decoration: none;
     }
 
@@ -128,7 +131,6 @@
     ul a {
       color: #fff;
       text-decoration: none;
-      border: 2px solid transparent;
       padding: 10px 25px;
       border-radius: 6px;
       transition: all 0.3s ease;
@@ -176,33 +178,19 @@
        ✅ 모바일 대응
     =============================== */
     @media (max-width: 768px) {
-      body {
-        background-attachment: scroll; /* 🔹 모바일에서 고정 배경 깨짐 방지 */
-        background-position: center center;
-      }
-
-      h1 {
-        font-size: 2em;
-      }
-
-      h2 {
-        font-size: 1.5em;
-        padding: 5px 15px;
-      }
-
-      ul {
-        font-size: 1.2em;
-      }
-
-      .social-icons {
-        bottom: 50px;
-        gap: 15px;
-      }
+      h1 { font-size: 2em; }
+      h2 { font-size: 1.5em; padding: 5px 15px; }
+      ul { font-size: 1.2em; }
+      .social-icons { bottom: 50px; gap: 15px; }
     }
   </style>
 </head>
 
 <body>
+  <!-- 🔹 배경과 오버레이 -->
+  <div class="background"></div>
+  <div class="overlay"></div>
+
   <!-- 로고 -->
   <div class="container">
     <img src="logo.png" alt="Levi's 로고" />
