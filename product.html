@@ -1,0 +1,247 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8" />
+  <title>Levi's Products</title>
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@500;700&display=swap" rel="stylesheet">
+  <style>
+    :root{
+      --levi-red:#C41230;
+      --text:#222;
+    }
+
+    /* 기본 */
+    html{scroll-behavior:smooth;}
+    body{
+      margin:0;
+      padding:0;
+      font-family:'Noto Sans KR','Oswald',sans-serif;
+      background:#fff;
+      color:var(--text);
+      text-align:center;
+      line-height:1.8;
+      overflow-x:hidden;
+    }
+
+    /* 로고 */
+    .logo{
+      display:flex;
+      justify-content:center;
+      align-items:center;
+      padding:24px 0 10px;
+      margin: 30px;
+    }
+    .logo img{display:block; width:110px; height:auto;}
+
+    /* Hero 배너 */
+    .hero{
+      position:relative;
+      width:100%;
+      height:45vh;
+      background-image:url('background.jpg');
+      background-size:cover;
+      background-position:center;
+      background-repeat:no-repeat;
+      display:flex;
+      justify-content:center;
+      align-items:center;
+      color:#fff;
+      overflow:hidden;
+    }
+    .hero::before{
+      content:"";
+      position:absolute; inset:0;
+      background:rgba(0,0,0,.55);
+      z-index:0;
+    }
+    .hero-inner{
+      position:relative; z-index:1;
+      max-width:900px;
+      padding:0 24px;
+    }
+    .hero h1{
+      font-family:'Oswald','Noto Sans KR',sans-serif;
+      text-transform:uppercase;
+      letter-spacing:2px;
+      font-size:3em;
+      color:#fff;
+      margin:0 0 12px;
+      text-shadow:0 0 10px rgba(0,0,0,.6);
+    }
+    .hero p{
+      margin:0 auto;
+      max-width:820px;
+      color:#f1f1f1;
+      text-shadow:0 0 6px rgba(0,0,0,.5);
+      font-size:1.05em;
+    }
+
+    /* 본문 컨테이너 */
+    .container{
+      max-width:900px;
+      margin:60px auto 120px;
+      padding:0 24px;
+      text-align:center;
+    }
+
+    /* 🔹 제품 리스트 → About/Campaign 목차 디자인 동일 적용 */
+    .product-list{
+      list-style:none;
+      padding:0;
+      margin:0 auto;
+      display:grid;
+      grid-template-columns:repeat(2, 1fr);
+      align-items:stretch;
+      justify-items:stretch;
+      max-width:900px;
+      border-top:2px solid var(--levi-red);
+      border-bottom:2px solid var(--levi-red);
+    }
+
+    .product-list li{
+      display:flex;
+      justify-content:center;
+      align-items:center;
+      padding:18px 8px;
+      font-family:'Oswald','Noto Sans KR',sans-serif;
+      text-transform:uppercase;
+      letter-spacing:1px;
+      font-weight:700;
+      font-size:1.15em;
+      color:var(--text);
+      border-left:1px solid var(--levi-red);
+      transition:all 0.3s ease;
+    }
+
+    /* 첫 항목 왼쪽 선 제거, 마지막 항목 오른쪽 선 제거 */
+    .product-list li:first-child{ border-left:none; }
+    .product-list li:last-child{ border-right:none; }
+
+    /* 링크 스타일 */
+    .product-list a{
+      display:block;
+      width:100%;
+      color:inherit;
+      text-decoration:none;
+      padding:12px 0;
+      transition:all 0.3s ease;
+    }
+
+    /* 🔹 Hover 효과: 빨간 배경 + 흰색 글씨 */
+    .product-list li:hover{
+      background-color:var(--levi-red);
+      color:#fff;
+      transform:translateY(-2px);
+    }
+
+    /* SNS 아이콘 */
+    .social-icons{
+      position:fixed;
+      left:0; bottom:30px;
+      width:100%;
+      display:flex; justify-content:center; gap:20px;
+      z-index:99;
+    }
+    .social-icons img{
+      width:30px; height:30px;
+      transition:transform .25s ease;
+    }
+    .social-icons img:hover{ transform:scale(1.12); }
+
+    /* 반응형 */
+    @media (max-width:768px){
+      .hero{ height:52vh; }
+      .hero h1{ font-size:2.2em; }
+      .hero p{ font-size:.98em; }
+
+      .product-list{
+        grid-template-columns:1fr;
+        border-left:none;
+        border-right:none;
+      }
+      .product-list li{
+        border-left:none;
+        border-right:none;
+        border-top:1px solid var(--levi-red);
+      }
+      .product-list li:first-child{
+        border-top:none;
+      }
+    }
+     .back-btn {
+  position: fixed;          /* ✅ 모든 페이지에서 고정 위치 */
+  top: 50px;                /* 상단 여백 */
+  left: 30px;               /* 왼쪽 여백 */
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-family: 'Oswald', sans-serif;
+  font-weight: 600;
+  color: #222;
+  border: 2px solid #C41230; /* Levi's red */
+  border-radius: 50px;
+  padding: 8px 18px;
+  background: transparent;
+  text-decoration: none;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  z-index: 9999;            /* 헤더 위에 항상 표시되도록 */
+}
+
+.back-btn::before {
+  content: "←";
+  font-size: 1.2em;
+}
+
+.back-btn:hover {
+  background: #C41230;
+  color: #fff;
+  transform: translateY(-2px);
+}
+  </style>
+</head>
+<body>
+<button class="back-btn" onclick="history.back()">Back</button>
+  <!-- 로고 -->
+  <div class="logo">
+    <a href="index.html">
+      <img src="logo.png" alt="Levi's Logo">
+    </a>
+  </div>
+
+  <!-- Hero 배너 -->
+  <section class="hero">
+    <div class="hero-inner">
+      <h1>Levi's Products</h1>
+      <p>
+        리바이스는 150년이 넘는 시간 동안 ‘진정한 오리지널’의 가치를 지켜왔습니다.<br>
+        시대마다 새로운 해석을 더하며, 청바지를 단순한 작업복이 아닌 문화의 언어로 바꿔왔습니다.<br>
+        오리지널 501®과 LVC 라인 등 리바이스의 대표 제품을 만나보세요.
+      </p>
+    </div>
+  </section>
+
+  <!-- 본문 -->
+  <div class="container">
+    <ul class="product-list">
+      <li><a href="top.html">Iconic Top</a></li>
+      <li><a href="bottom.html">Iconic Bottom</a></li>
+    </ul>
+  </div>
+
+  <!-- SNS 아이콘 -->
+  <div class="social-icons">
+    <a href="https://www.instagram.com/levis/" target="_blank">
+      <img src="https://upload.wikimedia.org/wikipedia/commons/a/a5/Instagram_icon.png" alt="Instagram">
+    </a>
+    <a href="https://www.facebook.com/Levis/" target="_blank">
+      <img src="https://upload.wikimedia.org/wikipedia/commons/5/51/Facebook_f_logo_%282019%29.svg" alt="Facebook">
+    </a>
+    <a href="https://www.youtube.com/user/levis" target="_blank">
+      <img src="https://cdn-icons-png.flaticon.com/512/1384/1384060.png" alt="YouTube">
+    </a>
+  </div>
+
+</body>
+</html>

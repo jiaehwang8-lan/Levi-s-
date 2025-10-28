@@ -1,0 +1,258 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8">
+  <title>Iconic Top | Levi’s</title>
+  <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@500;700&display=swap" rel="stylesheet">
+  <style>
+    :root{
+      --levi-red:#C41230;
+      --text:#222;
+      --bg:#ffffff;
+    }
+    html{scroll-behavior:smooth;}
+    body{
+      margin:0;
+      padding:0;
+      font-family:'Noto Sans KR','Oswald',sans-serif;
+      background:var(--bg);
+      color:var(--text);
+      text-align:center;
+      line-height:1.8;
+      overflow-x:hidden;
+    }
+
+    /* 🔹 고정 헤더 전체 */
+    .fixed-header{
+      position:fixed;
+      top:0;
+      left:0;
+      width:100%;
+      background:#fff;
+      z-index:1000;
+      box-shadow:0 2px 8px rgba(0,0,0,0.05);
+    }
+
+    /* 🔹 헤더 내부 컨테이너 (Back + 로고) */
+    .header{
+      display:flex;
+      justify-content:space-between;
+      align-items:center;
+      max-width:1000px;
+      margin:0 auto;
+      padding:15px 20px 10px;
+    }
+
+    /* 🔹 Back 버튼 */
+    .back-btn{
+      display:inline-flex;
+      align-items:center;
+      gap:6px;
+      font-family:'Oswald',sans-serif;
+      font-weight:600;
+      color:var(--text);
+      border:2px solid var(--levi-red);
+      border-radius:50px;
+      padding:8px 18px;
+      background:transparent;
+      text-decoration:none;
+      cursor:pointer;
+      transition:all .3s ease;
+    }
+    .back-btn::before{content:"←";font-size:1.2em;}
+    .back-btn:hover{background:var(--levi-red);color:#fff;transform:translateY(-2px);}
+
+    /* 🔹 로고 */
+    .logo img{
+      width:110px;
+      height:auto;
+      display:block;
+    }
+
+    /* 🔹 네비게이션 (Top / Bottom) */
+    .nav{
+      display:grid;
+      grid-template-columns:1fr 1fr;
+      max-width:700px;
+      margin:0 auto;
+      border-top:2px solid var(--levi-red);
+      border-bottom:2px solid var(--levi-red);
+    }
+    .nav div{
+      padding:15px 10px;
+      font-family:'Oswald',sans-serif;
+      font-weight:700;
+      text-transform:uppercase;
+      letter-spacing:1px;
+      transition:all .25s ease;
+      border-left:1px solid var(--levi-red);
+    }
+    .nav div:first-child{border-left:none;}
+    .nav a{
+      display:block;
+      width:100%;
+      height:100%;
+      color:var(--text);
+      text-decoration:none;
+    }
+    .nav div:hover{background:var(--levi-red);}
+    .nav div:hover a{color:#fff;}
+
+    /* 🔹 헤더 높이 확보용 패딩 */
+    .spacer{
+      height:180px; /* 헤더 + 네비 합친 높이만큼 확보 */
+    }
+
+    /* 🔹 타이틀 */
+    h1{
+      font-family:'Oswald','Noto Sans KR',sans-serif;
+      color:var(--levi-red);
+      text-transform:uppercase;
+      letter-spacing:2px;
+      font-size:2.8em;
+      margin:40px 0 50px;
+    }
+
+    /* 🔹 제품 그리드 */
+    .product-grid{
+      display:grid;
+      grid-template-columns:repeat(2,1fr);
+      gap:50px 40px;
+      max-width:1000px;
+      margin:0 auto 100px;
+      padding:0 20px;
+    }
+    .product-card{
+      background:#f9f9f9;
+      border:2px solid transparent;
+      border-radius:10px;
+      padding:30px 20px 40px;
+      transition:all .3s ease;
+      box-shadow:0 5px 15px rgba(0,0,0,.05);
+    }
+    .product-card:hover{
+      border-color:var(--levi-red);
+      transform:translateY(-5px);
+      box-shadow:0 8px 20px rgba(0,0,0,.1);
+    }
+    .product-card img{
+      width:60%;
+      height:auto;
+      margin-bottom:25px;
+      transition:transform .3s ease;
+    }
+    .product-card:hover img{transform:scale(1.05);}
+    .product-card h3{
+      font-family:'Oswald','Noto Sans KR',sans-serif;
+      font-size:1.3em;
+      color:var(--levi-red);
+      margin-bottom:15px;
+      letter-spacing:1px;
+    }
+    .product-card p{
+      font-size:.95em;
+      color:#333;
+      max-width:80%;
+      margin:0 auto;
+      line-height:1.7;
+    }
+
+    /* 🔹 SNS 아이콘 */
+    .social-icons{
+      display:flex;
+      justify-content:center;
+      gap:20px;
+      margin-bottom:60px;
+    }
+    .social-icons img{
+      width:30px;
+      height:30px;
+      transition:transform .25s ease;
+    }
+    .social-icons img:hover{transform:scale(1.15);}
+
+    /* 🔹 반응형 */
+    @media(max-width:900px){
+      .header{flex-direction:column;gap:10px;}
+      .nav{grid-template-columns:1fr;}
+      .nav div{border-left:none;border-top:1px solid var(--levi-red);}
+      .nav div:first-child{border-top:none;}
+      .product-grid{grid-template-columns:1fr;}
+      .spacer{height:230px;}
+    }
+  </style>
+</head>
+<body>
+
+  <!-- 🔹 고정 헤더 -->
+  <div class="fixed-header">
+    <div class="header">
+      <button class="back-btn" onclick="history.back()">Back</button>
+      <div class="logo">
+        <a href="index.html"><img src="logo.png" alt="리바이스 로고"></a>
+      </div>
+      <div style="width:90px;"></div>
+    </div>
+
+    <nav class="nav">
+      <div><a href="top.html">Iconic Top</a></div>
+      <div><a href="bottom.html">Iconic Bottom</a></div>
+    </nav>
+  </div>
+
+  <!-- 🔹 헤더 높이 보정용 -->
+  <div class="spacer"></div>
+
+  <!-- 타이틀 -->
+  <h1>Iconic Top</h1>
+
+  <!-- 🔹 제품 그리드 -->
+  <section class="product-grid">
+    <article class="product-card">
+      <a href="https://www.levi.com" target="_blank" rel="noopener">
+        <img src="jacket.webp" alt="LVC 1936 타입 I 자켓">
+      </a>
+      <h3>LVC 1936 타입 I 자켓</h3>
+      <p>미국 노동력을 상징하는 레귤러 트러커. 플리츠, 구리 신치백, 506번 투호스 패치, 빅E 탭이 특징.</p>
+    </article>
+
+    <article class="product-card">
+      <a href="https://www.levi.com" target="_blank" rel="noopener">
+        <img src="shirts.webp" alt="LVC 1955 쇼트혼 소우투스 셔츠">
+      </a>
+      <h3>LVC 1955 쇼트혼 소우투스 셔츠</h3>
+      <p>웨스턴 요크, 쇼트혼 라벨, 스냅 버튼, 100% 유기농 면으로 완성된 빈티지 셔츠.</p>
+    </article>
+
+    <article class="product-card">
+      <a href="https://www.levi.com" target="_blank" rel="noopener">
+        <img src="sshirts.webp" alt="LVC 베이 메도우 스웻셔츠">
+      </a>
+      <h3>LVC 베이 메도우 스웻셔츠</h3>
+      <p>1930년대 복각. 부드러운 플리스 소재와 오리지널 라벨로 클래식 감성 완성.</p>
+    </article>
+
+    <article class="product-card">
+      <a href="https://www.levi.com" target="_blank" rel="noopener">
+        <img src="tshirts.webp" alt="LVC 1950s 스포츠웨어 티셔츠">
+      </a>
+      <h3>LVC 1950s 스포츠웨어 티셔츠</h3>
+      <p>여유로운 핏의 저지 티셔츠. 스포츠웨어 라벨과 포켓으로 클래식한 무드 연출.</p>
+    </article>
+  </section>
+
+  <!-- 🔹 SNS 아이콘 -->
+  <div class="social-icons">
+    <a href="https://www.instagram.com/levis/" target="_blank" rel="noopener">
+      <img src="https://upload.wikimedia.org/wikipedia/commons/a/a5/Instagram_icon.png" alt="Instagram">
+    </a>
+    <a href="https://www.facebook.com/Levis/" target="_blank" rel="noopener">
+      <img src="https://upload.wikimedia.org/wikipedia/commons/5/51/Facebook_f_logo_%282019%29.svg" alt="Facebook">
+    </a>
+    <a href="https://www.youtube.com/user/levis" target="_blank" rel="noopener">
+      <img src="https://cdn-icons-png.flaticon.com/512/1384/1384060.png" alt="YouTube">
+    </a>
+  </div>
+
+</body>
+</html>
